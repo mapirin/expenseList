@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th=thymeleaf.org>
+	<head>
+		<meta charset="UTF-8">
+		<title>しおりツクール</title>
+	</head>
+	<body>
+		<form th:action="@{/shiori-data-end}" th:object="${shioriForm}" method="post">
+			<table>
+				<tr>
+					<!-- しおりタイトル -->
+					<td><span th:text="#{shioriTitle}"></span></td>
+					<td><span th:text="*{planTitle}"></span></td>
+				<tr>
+				<tr>
+					<!-- しおり実行日 -->
+					<td><span th:text="#{shioriDoDate}"></span></td>
+					<td>
+						<span th:text="*{planDateYear}"></span><span th:text="#{YEAR}"></span>
+						<span th:text="*{planDateMonth}"></span><span th:text="#{MONTH}"></span>
+						<span th:text="*{planDateDay}"></span><span th:text="#{DAY}"></span>
+					</td>
+				</tr>
+				<tr>
+					<!-- しおり行先 -->
+					<td><span th:text="#{shioriPlace}"></span></td>
+					<td><span th:text="*{placeName}"></span></td>
+				</tr>
+				<tr>
+					<!-- しおり到着時間 -->
+					<td>
+						<span th:text="#{shioriArrivalTime}"></span>
+						<span th:text="#{HOUR}"></span>
+					</td>
+					<td>
+						<span th:text="*{placeArrivalHour}"></span>：<span th:text="*{placeArrivalMinute}"></span>
+						<span th:text="#{MINUTE}"></span>
+					</td>
+				</tr>
+				<tr>
+					<!-- しおり出発時間 -->
+					<td>
+						<span th:text="#{shioriDepartureTime}"></span>
+						<span th:text="#{HOUR}"></span>
+					</td>
+					<td>
+						<span th:text="*{placeDepartureHour}"></span>：<span th:text="*{placeDepartureMinute}"></span>
+						<span th:text="#{MINUTE}"></span>
+					</td>
+				</tr>
+			</table>
+			<input type="submit" name="back_btn" value="戻る"/>
+			<input type="submit" name="regist_btn" value="登録"/>
+		</form>
+	</body>
+</html>

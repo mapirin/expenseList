@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>しおりツクール</title>
+	</head>
+	<body>
+		<h1><span th:text="#{shioriTsukuru}"></span></h1>
+		<p><span th:text="#{shioriTsukuru_catchCopy}"></span></p>
+		
+		<form th:action="@{/shiori-data-input}" method="post">
+			<input type="submit" name="make_btn" value="しおりを作る"/><br>
+			<input type="button" onclick="location.href='https://www.google.co.jp/'" value="Bye"/>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>しおりツクール</title>
+	</head>
+	<body>
+		<h1></h1>
+		
+		<form th:action="@{/shiori-data-conf}" th:object="${shioriForm}" method="post">
+			<table>
+				<tr>
+					<!-- しおりタイトル -->
+					<td><span th:text="#{shioriTitle}"></span></td>
+					<td><input type="text" th:field="*{planTitle}"/></td>
+				</tr>
+				<tr>
+					<!-- しおり実行日 -->
+					<td><span th:text="#{shioriDoDate}"></span></td>
+					<td>
+						<select th:field="*{planDateYear}">
+							<option value=""></option>
+							<option th:each="year : *{planDateYearListCreate()}" th:value="${year}" th:text="${year}"></option>
+						</select>
+						<span th:text="#{YEAR}"></span>
+						<select th:field="*{planDateMonth}">
+							<option value=""></option>
+							<option th:each="month : *{planDateMonthListCreate()}" th:value="${month}" th:text="${month}"></option>
+						</select>
+						<span th:text="#{MONTH}"></span>
+						<select th:field="*{planDateDay}">
+							<option value=""></option>
+							<option th:each="day : *{planDateDayListCreate()}" th:value="${day}" th:text="${day}"></option>
+						</select>
+						<span th:text="#{DAY}"></span>
+					</td>
+				</tr>
+				<tr>
+					<!-- しおり行先 -->
+					<td><span th:text="#{shioriPlace}"></span></td>
+					<td><input type="text" th:field="*{placeName}"/></td>
+				</tr>
+				<tr>
+					<!-- しおり到着時間 -->
+					<td><span th:text="#{shioriArrivalTime}"></span></td>
+					<td>
+						<select th:field="*{placeArrivalHour}">
+							<option value=""></option>
+							<option th:each="arrivalHour : *{placeArrivalHourListCreate()}" th:value="${arrivalHour}" th:text="${arrivalHour}"></option>
+						</select>
+						<span th:text="#{HOUR}"></span>
+						<select th:field="*{placeArrivalMinute}">
+							<option value=""></option>
+							<option th:each="arrivalMinute : *{placeArrivalMinuteListCreate()}" th:value="${arrivalMinute}" th:text="${arrivalMinute}"></option>
+						</select>
+						<span th:text="#{MINUTE}"></span>
+					</td>
+				</tr>
+				<tr>
+					<!-- しおり出発時間 -->
+					<td><span th:text="#{shioriDepartureTime}"></span></td>
+					<td>
+						<select th:field="*{placeDepartureHour}">
+							<option value=""></option>
+							<option th:each="departureHour : *{placeDepartureHourListCreate()}" th:value="${departureHour}" th:text="${departureHour}"></option>
+						</select>
+						<span th:text="#{HOUR}"></span>
+						<select th:field="*{placeDepartureMinute}">
+							<option value=""></option>
+							<option th:each="departureMinute : *{placeDepartureMinuteListCreate()}" th:value="${departureMinute}" th:text="${departureMinute}"></option>
+						</select>
+						<span th:text="#{MINUTE}"></span>
+					</td>
+				</tr>
+			</table>
+			<input type="submit" name="back_btn" value="戻る"/>
+			<input type="submit" name="conf_btn" value="内容確認"/>
+			<br>
+			<input type="button" onclick="window.open('https://www.driveplaza.com/')" value="高速情報検索"/>
+		</form>
+	</body>
+</html>
