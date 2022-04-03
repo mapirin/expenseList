@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<title th:text="#{title.spending-regist-input}"></title>
+	</head>
+	<body>
+		<div align="center">
+			<form th:action="@{/spending-data-end}" th:object="${spendingForm}" method="post">
+			<input type="submit" class="menu" name="menu_btn" th:value="#{button.menu}"/>
+			<input type="submit" class="logout" name="logout_btn" th:value="#{button.logout}"/>
+			<br>
+		
+			<header>
+				<h1 th:text="#{h1.spending-regist-input}"></h1>
+			</header>
+		
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		
+			<p th:text="#{p.spending-regist-input-str}"></p>
+			<p th:errors="*{all}" class="error-message"></p>
+				<table>
+					<tr>
+						<td>
+							<span th:text="#{label.spending-date}"></span><span th:text="#{label.colon}"></span>
+						</td>
+						<td>
+							<select th:field="*{spendingYear}">
+								<option value=""></option>
+								<option th:each="year:*{getSpendingYearList()}"
+										th:text="${year}" th:value="${year}" th:errorclass="error-input"></option>
+							</select>
+							<span th:text="#{label.year}"></span>
+							<select th:field="*{spendingMonth}">
+								<option value=""></option>
+								<option th:each="month:*{getSpendingMonthList()}"
+										th:text="${month}" th:value="${month}" th:errorclass="error-input">月</option>
+							</select>
+							<span th:text="#{label.month}"></span>
+							<select th:field="*{spendingDay}">
+								<option value=""></option>
+								<option th:each="day:*{getSpendingDayList()}"
+										th:text="${day}" th:value="${day}" th:errorclass="error-input"></option>
+							</select>
+							<span th:text="#{label.day}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="#{label.spending-amount}"></span><span th:text="#{label.colon}"></span>
+						</td>
+						<td><input type="text" th:field="*{spendingAmount}" th:errorclass="error-input"/>円</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="#{label.spending-method}"></span><span th:text="#{label.colon}"></span>
+						</td>
+						<td>
+							<select th:field="*{spendingMethod}">
+								<option value=""></option>
+								<option th:each="method:${methodNameList}"
+										th:text="${method}" th:value="${method}" th:errorclass="error-input"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="#{label.spending-category}"></span><span th:text="#{label.colon}"></span>
+						</td>
+						<td>
+							<select th:field="*{spendingCategory}">
+								<option value=""></option>
+								<option th:each="category:${spendingCategoryList}"
+										th:text="${category}" th:value="${category}" th:errorclass="error-input"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="#{label.spending-detail}"></span><span th:text="#{label.colon}"></span>
+						</td>
+						<td>
+							<textarea th:field="*{spendingDetail}" cols="15" rows="3" maxlength="30"></textarea>
+						</td>
+					</tr>
+				</table>
+				<input type="submit" name="registEnd_btn" th:value="#{button.regist}"/>
+			</form>
+		</div>
+	</body>
+</html>

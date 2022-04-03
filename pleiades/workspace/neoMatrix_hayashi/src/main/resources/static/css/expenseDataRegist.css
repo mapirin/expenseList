@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.login-user-str{
+	font-weight:bold;
+}
+
+.strPosition{
+	position:relative;
+	top:60px;
+	z-index:100;
+}
+
+.strNamePosition{
+	position:relative;
+	top:60px;
+	z-index:100;
+	font-style:italic;
+}
+.deposit-regist-button{
+	position:relative;
+	left:55px;
+	top:90px;
+	z-index:100;
+}
+
+.spending-regist-button{
+	position:relative;
+	left:55px;
+	top:100px;
+	z-index:100;
+}
+
+.expense-management-button{
+	position:relative;
+	left:43px;
+	top:113px;
+	z-index:100;
+}

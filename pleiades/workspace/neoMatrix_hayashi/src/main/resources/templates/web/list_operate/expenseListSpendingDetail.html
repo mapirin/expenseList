@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+   		<meta charset="UTF-8">
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+    	<title th:text="#{title.spending-detail}"></title>
+    	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    	
+	</head>
+	<body>
+		<div align="center">
+			<form th:action="@{/expenseList-spending-detail-data}" method="post">
+				<input type="submit" class="logout" name="logout_btn" th:value="#{button.logout}"/>
+				<br>
+				
+				<header>
+					<h1 th:text="#{h1.spending-detail}"></h1>
+				</header>
+				
+				<br>
+				<br>
+				<br>
+				<br>
+				
+				<br>
+				<div id="piechart"></div>
+					<script th:inline="javascript">
+	
+						var d = /*[[${spendingDataMAp}]]*/'noValue';
+				
+	        			google.charts.load('current', {'packages':['corechart']});
+	        			google.charts.setOnLoadCallback(drawChart);
+	        	
+	        			console.log(d)
+	        			function drawChart() {
+	
+	            			var data = new google.visualization.DataTable();
+	            			data.addColumn('string', 'category_name');
+	            			data.addColumn('number', 'deposit_amount');
+	            			Object.keys(d).forEach(function(key){
+	            				data.addRow([ key , d[key]]);
+	            			});
+	 
+	            			var options = {'title':'データにカーソルを合わせると金額が表示されます',
+	                			'width':600,
+	                			'height':400,
+	                			chartArea:{top:'100'},
+	                			'pieSliceText':'percentage',
+	                			tooltip:{text:'value'}
+	                		};
+	
+	            			var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+	            			chart.draw(data, options);
+	        			}
+	    			</script>
+				<input type="submit" name="back_btn" value="戻る"/>
+				<input type="hidden" name="spendingYear" th:value="${spendingYear}"/>
+				<input type="hidden" name="spendingMonth" th:value="${spendingMonth}"/>
+			</form>
+		</div>
+	</body>
+</html>

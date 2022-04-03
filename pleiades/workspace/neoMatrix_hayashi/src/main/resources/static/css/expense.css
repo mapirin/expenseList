@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+body {
+	overflow-x: hidden;
+	background-color: #fff;
+}
+
+header {
+	width: 100%;
+	padding: 50px 0 10px;
+	position: absolute;
+	top: 0;
+	background-color: #FFFFCC;
+	z-index: 0;
+}
+
+ul {
+	position:absolute;
+    left:550px;
+}
+
+.logout {
+	position: absolute;
+	right: 10px;
+	z-index: 10;
+}
+
+.menu {
+	position: absolute;
+	left: 10px;
+	z-index: 10;
+}
+
+.error-message {
+	color: red;
+}
+
+.blueColor {
+	margin: 0 -200%;
+	padding: 0 200%;
+	background-color: #DDFFFF;
+}

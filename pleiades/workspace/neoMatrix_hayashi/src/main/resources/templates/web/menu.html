@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expenseDataRegist.css}">
+		<title th:text="#{title.menu}"></title>
+	</head>
+	<body>
+		<div align="center">
+			<form th:action="@{/management-data}" th:object="${loginForm}" method="post">
+				<input type="submit" class="logout" name="logout_btn" th:value="#{button.logout}"/>
+				<br>
+			
+				<header>
+					<h1 th:text="#{h1.menu}"></h1>
+				</header>
+				<br>
+				<br>
+				<br>
+			
+				<table>
+					<tr>
+						<td class="login-user-str">
+							<span class="strNamePosition" th:text="*{userName}" th:value="*{userName}"></span>
+							<span class="strPosition" th:text="#{label.login-user-str}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td><input class="deposit-regist-button" type="submit" name="depositRegist_btn" th:value="#{button.deposit-regist}"/></td>
+					</tr>
+					<tr>
+						<td><input class="spending-regist-button" type="submit" name="spendingRegist_btn" th:value="#{button.spending-regist}"/></td>
+					</tr>
+					<tr>
+						<td><input class="expense-management-button" type="submit" name="managementData_btn" th:value="#{button.expense-list-management}"/></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+		"-//mybatis.org//DTD MApper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.persistence.ExpenseUserMapper">
+	<insert id="userInfoTableInsertData">
+		INSERT INTO
+			user_info(user_name, password)
+		VALUE
+			(#{userName}, #{password})
+	</insert>
+	<select id="userInfoTableSelectUserData" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			user_info
+		WHERE
+			user_name = #{userName}
+		AND
+			password = #{password}
+	</select>
+	<select id="userInfoTableUserExistCheck" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			user_info
+		WHERE
+			user_name = #{userName}
+	</select>
+</mapper>
