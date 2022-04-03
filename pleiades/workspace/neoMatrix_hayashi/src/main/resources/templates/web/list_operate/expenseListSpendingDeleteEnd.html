@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<title th:text="#{title.spending-delete-end}"></title>
+	</head>
+	<body>
+		<div align="center">
+			<form th:action="@{/expenseList-delete-end}" method="post">
+				<input class="logout" type="submit" name="logout_btn" th:value="#{button.logout}"/>
+				<br>
+				
+				<header>
+					<h1 th:text="#{h1.spending-delete-end}"></h1>
+				</header>
+				
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+			
+				<p th:text="#{p.delete-end-str}"></p>
+				<br>
+				<input type="submit" name="spendingToExpenseList_btn" th:value="#{button.expense-list}"/>
+				<input type="hidden" name="spendingYear" th:value="${spendingYear}"/>
+				<input type="hidden" name="spendingMonth" th:value="${spendingMonth}"/>
+			</form>
+		</div>
+	</body>
+</html>

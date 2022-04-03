@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<title th:text="#{title.deposit-regist-input}"></title>
+	</head>
+	<body>
+		<div align="center">
+			<form th:action="@{/deposit-data-end}" th:object="${depositForm}" method="post">
+			<input type="submit" class="menu" name="menu_btn" th:value="#{button.menu}"/>
+			<input type="submit" class="logout" name="logout_btn" th:value="#{button.logout}"/>
+			<br>
+			<header>
+				<h1 th:text="#{h1.deposit-regist-input}"></h1>
+			</header>
+		
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		
+			<p th:text="#{p.deposit-regist-input-str}"></p>
+		
+			<p th:errors="*{all}" class="error-message"></p>
+				<table class="table">
+					<tr>
+						<td>
+							<span th:text="#{label.deposit-date}"></span><span th:text="#{label.colon}"></span>
+						</td>
+						<td>
+							<select th:field="*{depositYear}">
+								<option value=""></option>
+								<option th:each="year:*{getDepositYearList()}"
+										th:text="${year}" th:value="${year}" th:errorclass="error-input"></option>
+							</select>
+							<span th:text="#{label.year}"></span>
+							<select th:field="*{depositMonth}">
+								<option value=""></option>
+								<option th:each="month:*{getDepositMonthList()}"
+										th:text="${month}" th:value="${month}" th:errorclass="error-input">月</option>
+							</select>
+							<span th:text="#{label.month}"></span>
+							<select th:field="*{depositDay}">
+								<option value=""></option>
+								<option th:each="day:*{getDepositDayList()}"
+										th:text="${day}" th:value="${day}" th:errorclass="error-input"></option>
+							</select>
+							<span th:text="#{label.day}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="#{label.deposit-amount}"></span><span th:text="#{label.colon}"></span>
+						</td>
+						<td><input type="text" th:field="*{depositAmount}" th:errorclass="error-input"/>円</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="#{label.deposit-method}"></span><span th:text="#{label.colon}"></span>
+						</td>
+						<td>
+							<select th:field="*{depositMethod}">
+								<option value=""></option>
+								<option th:each="method:${methodNameList}"
+										th:text="${method}" th:value="${method}" th:errorclass="error-input"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="#{label.deposit-category}"></span><span th:text="#{label.colon}"></span>
+						</td>
+						<td>
+							<select th:field="*{depositCategory}">
+								<option value=""></option>
+								<option th:each="category:${depositCategoryList}"
+										th:text="${category}" th:value="${category}" th:errorclass="error-input"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="#{label.deposit-detail}"></span><span th:text="#{label.colon}"></span>
+						</td>
+						<td>
+							<textarea th:field="*{depositDetail}" cols="15" rows="3" maxlength="30"></textarea>
+						</td>
+					</tr>
+				</table>
+				<input type="submit" name="registEnd_btn" th:value="#{button.regist}"/>
+			</form>
+		</div>
+	</body>
+</html>

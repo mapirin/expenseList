@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<title th:text="#{title.user-regist-end}"></title>
+	</head>
+	<body>
+		<div align="center">
+			<header>
+				<h1 th:text="#{h1.user-regist-end}"></h1>
+			</header>
+		
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		
+			<p th:text="#{p.user-regist-end-str}"></p>
+			<form th:action="@{/login}" th:object="${userForm}" method="post">
+				<input type="submit" name="backLogin_btn" th:value="#{button.login-window}"/>
+			</form>
+		</div>
+	</body>
+</html>

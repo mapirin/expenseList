@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expenseListRelation.css}">
+		<title th:text="#{title.expense-list}"></title>
+	</head>
+	<body>
+		<div align="center">
+			<form th:action="@{/expenseList-operate-data}" th:object="${loginForm}" method="post">
+				<input type="submit" class="menu" name="menu_btn" th:value="#{button.menu}"/>
+				<input type="submit" class="logout" name="logout_btn" th:value="#{button.logout}"/>
+				<br>	
+				<br>
+				<header>
+					<span class="expenseStr">
+						<span th:text="*{userName}"></span><span th:text="#{label.expense-list-user-str}"></span>
+					</span>
+				</header>
+			</form>
+			<br>
+			<br>
+			<form th:action="@{/expenseList-operate-data}" th:object="${expenseListBean}" method="post">
+			<span class="lineBorder"></span>
+				<span class="blueColor">
+					<span class="boldStr" th:text="*{expenseYear}"></span>
+						<span th:text="#{label.year}"></span>
+					<span class="boldStr" th:text="*{expenseMonth}"></span>
+						<span th:text="#{label.month}"></span>
+				</span> 
+				<br>
+				<span class="amount" th:text="#{label.sum-amount}"></span>
+					<span class="boldStr" th:text="${sumAmount}" th:value="${sumAmount}"></span>
+					<span th:text="#{label.en}"></span>
+				<span class="lineBorder"></span>
+				<br>
+				
+				<span class="serachStr" th:text="#{p.search-str}"></span>
+				<select class="searchPullYear" th:field="*{expenseYear}">
+					<option th:each="year:*{getExpenseYearList()}" th:text="${year}" th:value="${year}"></option>
+				</select>
+				<select class="searchPullMonth" th:field="*{expenseMonth}">
+					<option th:each="month:*{getExpenseMonthList()}" th:text="${month}" th:value="${month}"></option>
+				</select>
+				<br>
+				<input type="submit" class="searchButton" name="search_btn" th:value="#{button.search}"/>
+				<br>
+				<br>
+			</form>
+			
+				<span class="lineBorder"></span>
+					<span  class="amount" th:text="#{label.deposit-sum-amount}"></span>
+						<span class="boldStr" th:text="${depositSumAmount}" th:value="${depositSumAmount}"></span>
+					<span th:text="#{label.en}"></span>
+				<span class="lineBorder"></span>
+			
+				<table class="table" border="1">
+					<tr>
+						<th th:text="#{label.deposit-date}"></th>
+						<th th:text="#{label.deposit-amount}"></th>
+						<th th:text="#{label.deposit-method}"></th>
+						<th th:text="#{label.deposit-category}"></th>
+						<th th:text="#{label.deposit-detail}"></th>
+					</tr>
+					<tr th:each="data:${depositDataList}">
+						<td>
+							<span th:text="${data.depositYear}" th:value="${data.depositYear}"></span>
+								<span th:text="#{label.slush}"></span>
+							<span th:text="${data.depositMonth}" th:value="${data.depositMonth}"></span>
+								<span th:text="#{label.slush}"></span>
+							<span th:text="${data.depositDay}" th:value="${data.depositDay}"></span>
+						</td>
+						<td th:text="${data.depositAmount}" th:value="${data.depositAmount}"></td>
+						<td th:text="${data.depositMethod}" th:value="${data.depositMethod}"></td>
+						<td th:text="${data.depositCategory}" th:value="${data.depositCategory}"></td>
+						<td th:text="${data.depositDetail}" th:value="${data.depositDetail}"></td>
+						<td>
+							<form th:action="@{/expenseList-operate-data}" method="post">
+								<input type="submit" name="depositDetail_btn" th:value="#{button.detail}"/>
+								<input type="submit" name="depositDelete_btn" th:value="#{button.delete}"/>
+								
+								<input type="hidden" name="depositYear" th:value="${data.depositYear}"/>
+								<input type="hidden" name="depositMonth" th:value="${data.depositMonth}"/>
+								<input type="hidden" name="depositId" th:value="${data.depositId}"/>
+							</form>
+						</td>
+					</tr>
+				</table>
+				<br>
+				
+				<span class="lineBorder"></span>
+					<span class="amount" th:text="#{label.spending-sum-amount}"></span>
+						<span class="boldStr" th:text="${spendingSumAmount}" th:value="${spendingSumAmount}"></span>
+					<span th:text="#{label.en}"></span>
+				<span class="lineBorder"></span>
+				
+				<table class="table" border="1">
+					<tr>
+						<th th:text="#{label.spending-date}"></th>
+						<th th:text="#{label.spending-amount}"></th>
+						<th th:text="#{label.spending-method}"></th>
+						<th th:text="#{label.spending-category}"></th>
+						<th th:text="#{label.spending-detail}"></th>
+					</tr>
+					<tr th:each="data:${spendingDataList}">
+						<td>
+							<span th:text="${data.spendingYear}" th:value="${data.spendingYear}"></span>
+								<span th:text="#{label.slush}"></span>
+							<span th:text="${data.spendingMonth}" th:value="${data.spendingMonth}"></span>
+								<span th:text="#{label.slush}"></span>
+							<span th:text="${data.spendingDay}" th:value="${data.spendingDay}"></span>
+						</td>
+						<td th:text="${data.spendingAmount}" th:value="${data.spendingAmount}"></td>
+						<td th:text="${data.spendingMethod}" th:value="${data.spendingMethod}"></td>
+						<td th:text="${data.spendingCategory}" th:value="${data.spendingCategory}"></td>
+						<td th:text="${data.spendingDetail}" th:value="${data.spendingDetail}"></td>
+						<td>
+							<form th:action="@{/expenseList-operate-data}" method="post">
+								<input type="submit" name="spendingDetail_btn" th:value="#{button.detail}"/>
+								<input type="submit" name="spendingDelete_btn" th:value="#{button.delete}"/>
+								
+								<input type="hidden" name="spendingYear" th:value="${data.spendingYear}"/>
+								<input type="hidden" name="spendingMonth" th:value="${data.spendingMonth}"/>
+								<input type="hidden" name="spendingId" th:value="${data.spendingId}"/>
+							</form>
+						</td>
+					</tr>
+				</table>
+			<br>
+		</div>
+	</body>
+</html>

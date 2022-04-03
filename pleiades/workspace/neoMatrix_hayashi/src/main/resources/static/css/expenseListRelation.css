@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+.expenseStr {
+	font-size: 30px;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.lineBorder {
+	display: flex;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #ccc;
+}
+
+.amount {
+	margin: 0 -200%;
+	padding: 0 200%;
+	background-color: #DDFFFF;
+}
+
+.table {
+	background-color: white;
+}
+
+.boldStr {
+	font-weight: bold;
+}
+
+.serachStr {
+	font-size: 8px;
+	position: absolute;
+	left: 70px;
+	top: 168px;
+}
+
+.searchButton {
+	width: 80px;
+	position: absolute;
+	left: 100px;
+	top: 215px;
+}
+
+.searchPullYear {
+	position: absolute;
+	left: 90px;
+	top: 190px;
+}
+
+.searchPullMonth {
+	position: absolute;
+	left: 150px;
+	top: 190px;
+}

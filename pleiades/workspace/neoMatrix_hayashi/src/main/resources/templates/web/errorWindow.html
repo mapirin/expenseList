@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" http-equiv="refresh" content=" 5; url=login">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<title th:text="#{title.error-str}"></title>
+	</head>
+	<body>
+		<div align="center">
+			<header>
+				<h1 th:text=#{h1.error-str}></h1>
+			</header>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<p th:text="#{p.error-str-top}"></p>
+		</div>
+			<ul>
+				<li><span th:text="#{label.error-str-no-permit-url}"></span></li>
+				<li><span th:text="#{label.error-str-user-info}"></span></li>
+				<li><span th:text="#{label.erro-str-year-month}"></span></li>
+			</ul>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		<div align="center">
+			<span th:text="#{label.error-str-login}"></span>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<title th:text="#{title.user-regist-input}"></title>
+	</head>
+	<body>
+		<div align="center">
+			<header>
+				<h1 th:text="#{h1.user-regist-input}"></h1>
+			</header>
+		
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		
+			<p th:text="#{p.user-regist-input-str}"></p>
+			<form th:action="@{/user-regist-conf}" th:object="${userForm}" method="post">
+				<p th:errors="*{all}" class="error-message"></p>
+				<table>
+					<tr>
+						<td th:text="#{label.user-name}"></td>
+						<td><input type="text" th:field="*{userName}" th:errorclass="error-input"/></td>
+					</tr>
+					<tr>
+						<td th:text="#{label.password}"></td>
+						<td><input type="text" th:field="*{password}" th:errorclass="error-input"/></td>
+					</tr>
+				</table>
+				<br>
+				<input type="submit" name="back_btn" th:value="#{button.back}"/>
+				<input type="submit" name="registConf_btn" th:value="#{button.conf}"/>
+			</form>
+		</div>
+	</body>
+</html>

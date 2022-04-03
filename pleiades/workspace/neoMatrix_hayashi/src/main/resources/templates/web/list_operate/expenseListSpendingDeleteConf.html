@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expenseListRelation.css}">
+		<title th:text="#{title.spending-delete-conf}"></title>
+	</head>
+	<body>
+		<form th:action="@{/delete-end}" method="post">
+			<input class="logout" type="submit" name="logout_btn" th:value="#{button.logout}"/>
+			<br>
+		</form>
+		
+		<div align="center">
+			<header>
+				<h1 th:text="#{h1.spending-delete-conf}"></h1>
+			</header>
+			
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			
+			<p th:text="#{p.delete-conf-str}"></p>
+			<form th:action="@{/delete-end}" method="post">
+				<table class="table" border="1" th:each="data:${spendingDataList}">
+					<tr>
+						<td th:text="#{label.spending-date}"></td>
+						<td>
+							<span th:text="${data.spendingYear}" th:value="${data.spendingYear}"></span>
+								<span th:text="#{label.slush}"></span>
+							<span th:text="${data.spendingMonth}" th:value="${data.spendingMonth}"></span>
+								<span th:text="#{label.slush}"></span>
+							<span th:text="${data.spendingDay}" th:value="${data.spendingDay}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td th:text="#{label.spending-amount}"></td>
+						<td th:text="${data.spendingAmount}" th:value="${data.spendingAmount}"></td>
+					</tr>
+					<tr>
+						<td th:text="#{label.spending-method}"></td>
+						<td th:text="${data.spendingMethod}" th:value="${data.spendingMethod}"></td>
+					</tr>
+					<tr>
+						<td th:text="#{label.spending-category}"></td>
+						<td th:text="${data.spendingCategory}" th:value="${data.spendingCategory}"></td>
+					</tr>
+					<tr>
+						<td th:text="#{label.spending-detail}"></td>
+						<td th:text="${data.spendingDetail}" th:value="${data.spendingDetail}"></td>
+					</tr>
+				</table>
+				<br>
+				<input type="submit" name="spendingToBack_btn" th:value="#{button.back}"/>
+				<input type="submit" name="spendingDeleteEnd_btn" th:value="#{button.delete}"/>
+				
+				<input type="hidden" name="spendingYear" th:value="${spendingYear}"/>
+				<input type="hidden" name="spendingMonth" th:value="${spendingMonth}"/>
+				<input type="hidden" name="spendingId" th:value="${spendingId}"/>
+			</form>
+		</div>
+	</body>
+</html>

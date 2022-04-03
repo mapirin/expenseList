@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+		"-//mybatis.org//DTD MApper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.persistence.ExpenseListOperateMapper">
+	<!-- ユーザID抽出 -->
+	<select id="userInfoTableSelectId" resultType="Integer">
+		SELECT
+			user_id
+		FROM
+			user_info
+		WHERE
+			user_name = #{userName}
+	</select>
+	<!-- 初期画面抽出 -->
+	<select id="depositInfoTableAllData" resultType="com.example.domain.DepositInfo">
+		SELECT
+			deposit_id, deposit_info.user_id, deposit_year, deposit_month, deposit_day, deposit_amount, deposit_method_id, deposit_category_id, deposit_detail
+		FROM
+			deposit_info
+			LEFT JOIN
+				method_info
+			ON deposit_info.deposit_method_id = method_info.method_id
+			LEFT JOIN
+				category_info
+			ON deposit_info.deposit_category_id = category_info.category_id
+		WHERE
+			deposit_info.user_id = #{userId}
+		AND
+			(deposit_year = #{year} AND deposit_month = #{month})
+		ORDER BY
+			deposit_day;
+	</select>
+	<select id="spendingInfoTableAllData" resultType="com.example.domain.SpendingInfo">
+		SELECT
+			spending_id, spending_info.user_id, spending_year, spending_month, spending_day, spending_amount, spending_method_id, spending_category_id, spending_detail
+		FROM
+			spending_info
+			LEFT JOIN
+				method_info
+			ON spending_info.spending_method_id = method_info.method_id
+			LEFT JOIN
+				category_info
+			ON spending_info.spending_category_id = category_info.category_id
+		WHERE
+			spending_info.user_id = #{userId}
+		AND
+			(spending_year = #{year} AND spending_month = #{month})
+		ORDER BY
+			spending_day;
+	</select>
+	
+	<!-- IDからNameを抽出 -->
+	<select id="methodInfoTableSelectName" resultType="String">
+		SELECT
+			method_name
+		FROM
+			method_info
+		WHERE
+			method_id = #{methodId}
+	</select>
+	<select id="categoryInfoTableSelectName" resultType="String">
+		SELECT
+			category_name
+		FROM
+			category_info
+		WHERE
+			category_id = #{categoryId}
+	</select>
+	
+	<select id="depositInfoTableSumAmount" resultType="Integer">
+		SELECT
+			SUM(deposit_amount)
+		FROM
+			deposit_info
+		WHERE
+			deposit_info.user_id = #{userId}
+		AND
+			deposit_year = #{year}
+		AND
+			deposit_month = #{month}
+	</select>
+	<select id="spendingInfoTableSumAmount" resultType="Integer">
+		SELECT
+			SUM(spending_amount)
+		FROM
+			spending_info
+		WHERE
+			spending_info.user_id = #{userId}
+		AND
+			spending_year = #{year}
+		AND
+			spending_month = #{month}
+	</select>
+	
+	<!-- 削除確認画面描画 -->
+	<select id="depositInfoTableDeleteDataConf" resultType="com.example.domain.DepositInfo">
+		SELECT
+			deposit_id, deposit_info.user_id, deposit_year, deposit_month, deposit_day, deposit_amount, deposit_method_id, deposit_category_id, deposit_detail
+		FROM
+			deposit_info
+		WHERE
+			deposit_id = #{depositId}
+	</select>
+	<select id="spendingInfoTableDeleteDataConf" resultType="com.example.domain.SpendingInfo">
+		SELECT
+			spending_id, spending_info.user_id, spending_year, spending_month, spending_day, spending_amount, spending_method_id, spending_category_id, spending_detail
+		FROM
+			spending_info
+		WHERE
+			spending_id = #{spendingId}
+	</select>
+	
+	<!-- 削除処理 -->
+	<delete id="depositInfoTableDataDelete">
+		DELETE FROM
+			deposit_info
+		WHERE
+			deposit_id = #{depositId}
+	</delete>
+	<delete id="spendingInfoTableDataDelete">
+		DELETE FROM
+			spending_info
+		WHERE
+			spending_id = #{spendingId}
+	</delete>
+	
+	
+	<select id="depositCategoryAndAmountSelectData" resultType="com.example.domain.DepositDetailInfo">
+		SELECT
+			category_info.category_name, deposit_amount
+		FROM
+			deposit_info
+			LEFT JOIN
+				category_info
+			ON deposit_info.deposit_category_id = category_info.category_id
+		WHERE
+			deposit_info.user_id = #{userId}
+		AND
+			deposit_year = #{year}
+		AND
+			deposit_month = #{month}
+	</select>
+	
+	
+	<resultMap id="getDepositPieChartSelectData" type="com.example.domain.DepositDetailInfo">
+		<result property="depositAmount" column="SUM(deposit_amount)"/>
+	</resultMap>
+	<select id="depositPiechartSelectData" resultMap="getDepositPieChartSelectData">
+		SELECT
+			category_info.category_name, SUM(deposit_amount)
+		FROM
+			deposit_info
+			LEFT JOIN
+				category_info
+			ON deposit_info.deposit_category_id = category_info.category_id
+		WHERE
+			deposit_info.user_id = #{userId}
+		AND
+			deposit_year = #{year}
+		AND
+			deposit_month = #{month}
+		GROUP BY
+			category_info.category_name
+	</select>
+	
+	<resultMap id="getSpendingPieChartSelectData" type="com.example.domain.SpendingDetailInfo">
+		<result property="spendingAmount" column="SUM(spending_amount)"/>
+	</resultMap>
+	<select id="spendingPiechartSelectData" resultMap="getSpendingPieChartSelectData">
+		SELECT
+			category_info.category_name, SUM(spending_amount)
+		FROM
+			spending_info
+			LEFT JOIN
+				category_info
+			ON spending_info.spending_category_id = category_info.category_id
+		WHERE
+			spending_info.user_id = #{userId}
+		AND
+			spending_year = #{year}
+		AND
+			spending_month = #{month}
+		GROUP BY
+			category_info.category_name
+	</select>
+	
+</mapper>

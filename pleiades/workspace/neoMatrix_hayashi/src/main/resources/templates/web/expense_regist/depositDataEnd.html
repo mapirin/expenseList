@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<title th:text="#{title.deposit-regist-end}"></title>
+	</head>
+	<body>
+		<div align="center">
+			<form th:action="@{/deposit-menu}" method="post">
+				<input type="submit" class="menu" name="menu_btn" th:value="#{button.menu}"/>
+				<input type="submit" class="logout" name="logout_btn" th:value="#{button.logout}"/>
+				<br>
+			
+				<header>
+					<h1 th:text="#{h1.deposit-regist-end}"></h1>
+				</header>
+			
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+			
+				<p th:text="#{p.deposit-regist-end-str}"></p>
+				<input type="submit" name="addDepositRegist_btn" th:value="#{button.add-regist}"/>
+				<input type="hidden" name="userName" th:value="${userName}"/>
+			</form>
+		</div>
+	</body>
+</html>

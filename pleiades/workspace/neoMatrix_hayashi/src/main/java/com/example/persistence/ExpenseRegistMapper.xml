@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+		"-//mybatis.org//DTD MApper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper  namespace = "com.example.persistence.ExpenseRegistMapper">
+	<!-- セレクトボックスに追加する値を抽出 -->
+	<select id="methodInfoTableSelectName" resultType="String">
+		SELECT
+			method_name
+		FROM
+			method_info
+	</select>
+	<select id="categoryInfoTableSelectData" resultType="com.example.domain.CategoryInfo">
+		SELECT
+			category_type, category_name
+		FROM
+			category_info
+	</select>
+	
+	<!-- 名称からIDを取得 -->
+	<select id="methodInfoTableSelectId" resultType="Integer">
+		SELECT
+			method_id
+		FROM
+			method_info
+		WHERE
+			method_name = #{methodName}
+	</select>
+	<select id="categoryInfoTableSelectId" resultType="Integer">
+		SELECT
+			category_id
+		FROM
+			category_info
+		WHERE
+			category_type = #{categoryType}
+		AND
+			category_name = #{categoryName}
+	</select>
+	
+	<!--  -->
+	<select id="userInfoTableSelectId" resultType="Integer">
+		SELECT
+			user_id
+		FROM
+			user_info
+		WHERE
+			user_name = #{userName}
+	</select>
+	<!-- 入出金データを登録 -->
+	<insert id="depositInfoTableInsertData">
+		INSERT INTO
+			deposit_info(deposit_info.user_id, deposit_year, deposit_month, deposit_day, deposit_amount, deposit_method_id, deposit_category_id, deposit_detail)
+		VALUES
+			(#{userId}, #{depositYear}, #{depositMonth}, #{depositDay}, #{depositAmount}, #{depositMethodId}, #{depositCategoryId}, #{depositDetail});
+	</insert>
+	<insert id="spendingInfoTableInsertData">
+		INSERT INTO
+			spending_info(spending_info.user_id, spending_year, spending_month, spending_day, spending_amount, spending_method_id, spending_category_id, spending_detail)
+		VALUES
+			(#{userId}, #{spendingYear}, #{spendingMonth}, #{spendingDay}, #{spendingAmount}, #{spendingMethodId}, #{spendingCategoryId}, #{spendingDetail});
+	</insert>
+</mapper>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expense.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/expenseListRelation.css}">
+		<title th:text="#{title.deposit-delete-conf}"></title>
+	</head>
+	<body>
+		<form th:action="@{/delete-end}" method="post">
+			<input class="logout" type="submit" name="logout_btn" th:value="#{button.logout}"/>
+			<br>
+		</form>
+		<div align="center">
+			
+			<header>
+				<h1 th:text="#{h1.deposit-delete-conf}"></h1>
+			</header>
+			
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			
+			<p th:text="#{p.delete-conf-str}"></p>
+				<table class="table" border="1" th:each="data:${depositDataList}">
+					<tr>
+						<td th:text="#{label.deposit-date}"></td>
+						<td>
+							<span th:text="${data.depositYear}" th:value="${data.depositYear}"></span>
+								<span th:text="#{label.slush}"></span>
+							<span th:text="${data.depositMonth}" th:value="${data.depositMonth}"></span>
+								<span th:text="#{label.slush}"></span>
+							<span th:text="${data.depositDay}" th:value="${data.depositDay}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td th:text="#{label.deposit-amount}"></td>
+						<td th:text="${data.depositAmount}" th:value="${data.depositAmount}"></td>
+					</tr>
+					<tr>
+						<td th:text="#{label.deposit-method}"></td>
+						<td th:text="${data.depositMethod}" th:value="${data.depositMethod}"></td>
+					</tr>
+					<tr>
+						<td th:text="#{label.deposit-category}"></td>
+						<td th:text="${data.depositCategory}" th:value="${data.depositCategory}"></td>
+					</tr>
+					<tr>
+						<td th:text="#{label.deposit-detail}"></td>
+						<td th:text="${data.depositDetail}" th:value="${data.depositDetail}"></td>
+					</tr>
+				</table>
+				<br>
+			<form th:action="@{/delete-end}" th:object="${expenseListBean}" method="post">
+				<input type="submit" name="depositToBack_btn" th:value="#{button.back}"/>
+				<input type="submit" name="depositDeleteEnd_btn" th:value="#{button.delete}"/>
+				
+				<input type="hidden" name="depositYear" th:value="${depositYear}"/>
+				<input type="hidden" name="depositMonth" th:value="${depositMonth}"/>
+				<input type="hidden" name="depositId" th:value="${depositId}"/>
+			</form>
+		</div>
+	</body>
+</html>
