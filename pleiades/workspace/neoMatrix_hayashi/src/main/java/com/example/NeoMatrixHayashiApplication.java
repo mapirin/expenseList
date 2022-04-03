@@ -18,6 +18,7 @@ public class NeoMatrixHayashiApplication {
 		SpringApplication.run(NeoMatrixHayashiApplication.class, args);
 	}
 	
+	
 	@Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
