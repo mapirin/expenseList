@@ -65,11 +65,7 @@
 					</tr>
 					<tr th:each="data:${depositDataList}">
 						<td>
-							<span th:text="${data.depositYear}" th:value="${data.depositYear}"></span>
-								<span th:text="#{label.slush}"></span>
-							<span th:text="${data.depositMonth}" th:value="${data.depositMonth}"></span>
-								<span th:text="#{label.slush}"></span>
-							<span th:text="${data.depositDay}" th:value="${data.depositDay}"></span>
+							<span th:utext="${data.depositYear}+#{label.slush}+${data.depositMonth}+#{label.slush}+${data.depositDay}"></span>
 						</td>
 						<td th:text="${data.depositAmount}" th:value="${data.depositAmount}"></td>
 						<td th:text="${data.depositMethod}" th:value="${data.depositMethod}"></td>
@@ -105,11 +101,7 @@
 					</tr>
 					<tr th:each="data:${spendingDataList}">
 						<td>
-							<span th:text="${data.spendingYear}" th:value="${data.spendingYear}"></span>
-								<span th:text="#{label.slush}"></span>
-							<span th:text="${data.spendingMonth}" th:value="${data.spendingMonth}"></span>
-								<span th:text="#{label.slush}"></span>
-							<span th:text="${data.spendingDay}" th:value="${data.spendingDay}"></span>
+							<span th:utext="${data.spendingYear}+#{label.slush}+${data.spendingMonth}+#{label.slush}+${data.spendingDay}"></span>
 						</td>
 						<td th:text="${data.spendingAmount}" th:value="${data.spendingAmount}"></td>
 						<td th:text="${data.spendingMethod}" th:value="${data.spendingMethod}"></td>
